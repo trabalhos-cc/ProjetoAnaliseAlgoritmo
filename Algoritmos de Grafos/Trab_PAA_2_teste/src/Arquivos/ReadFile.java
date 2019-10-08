@@ -30,16 +30,13 @@ public class ReadFile {
 
 	public Grafo read () throws IOException{
 		
-		//descarta a primeira linha
-		//this.path.nextLine();
-		
 		ArrayList <Vertice> v = new ArrayList<Vertice>();
 
 		boolean g = this.readGuidance(this.path.nextLine());
-		
 		int numVer = this.readNumVer(this.path.nextLine(), v);
 		
-		this.grafo = new Grafo(numVer+1, g);
+		this.grafo = new Grafo(numVer, g);
+		System.out.println(this.grafo);
 		
 		for(int i = 0; i < numVer; i++) {
 			this.grafo.addVertice(v.get(i).getRotulo());
@@ -48,7 +45,6 @@ public class ReadFile {
 		while(this.path.hasNextLine()) {
 			this.readUV(this.path.nextLine());
 		}
-		
 		
 		return this.grafo;
 	}
@@ -71,9 +67,11 @@ public class ReadFile {
 		Vertice ve = new Vertice();
 		
 		line = line.substring(line.indexOf('=')+1);
+	
 		aux = line.substring(0,1);
 
 		if(!aux.equals("{")) {
+
 			return Integer.parseInt(line);
 		}
 		
