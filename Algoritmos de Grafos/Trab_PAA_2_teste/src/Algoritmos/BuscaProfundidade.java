@@ -1,7 +1,6 @@
 package Algoritmos;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 import Grafos.Aresta;
 import Grafos.Grafo;
@@ -81,10 +80,8 @@ public class BuscaProfundidade {
 				if (cor[verAdj] == branco) {
 					this.predecessor[verAdj] = ver;
 					tempo = this.visitaBuscaProfundidade(verAdj, tempo, cor);
-				}
-				
+				}	
 			}
-		
 		}
 
 		cor[ver] = preto; 

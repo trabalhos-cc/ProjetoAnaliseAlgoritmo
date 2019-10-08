@@ -6,8 +6,8 @@ import Algoritmos.BuscaLargura;
 import Algoritmos.BuscaProfundidade;
 import Algoritmos.FordFulkerson;
 import Algoritmos.Kruskal;
+import Arquivos.ReadFile;
 import Grafos.Grafo;
-import file_manipulation.ReadFile;
 
 public class Main {
 
