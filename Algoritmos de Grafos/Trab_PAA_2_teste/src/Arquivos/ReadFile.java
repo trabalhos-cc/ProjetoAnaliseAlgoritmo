@@ -117,13 +117,7 @@ public class ReadFile {
 			}else {
 				this.grafo.addAresta(Integer.parseInt(sn[i]), sn[i+1],
 						Integer.parseInt(statenames[i]), Integer.parseInt(statenames[i+1]));
-			}
-			
-			
-			
-			
+			}	
 		}
-		
-
 	}
 }
