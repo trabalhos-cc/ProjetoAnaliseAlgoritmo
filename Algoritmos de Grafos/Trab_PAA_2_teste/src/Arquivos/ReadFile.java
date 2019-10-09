@@ -14,6 +14,14 @@ public class ReadFile {
 	private Scanner path;
 	private Grafo grafo;
 	
+	/**!
+	 * Construtor da classe ReadFile, inicializa valores
+	 * 
+	 * @param fileName
+	 * 
+	 * @Pré-Condição: nenhuma
+	 * @Pós-Condição: Arquivo aberto para leitura
+	 */
 	public ReadFile(String fileName) {
         Path filePath = Paths.get(fileName);
 
@@ -28,6 +36,13 @@ public class ReadFile {
         
     }
 
+	/**!
+	 * le dados do arquivo
+	 * 
+	 * 
+	 * @Pré-Condição: arquivo aberto
+	 * @Pós-Condição: dados lidos 
+	 */
 	public Grafo read () throws IOException{
 		
 		ArrayList <Vertice> v = new ArrayList<Vertice>();
@@ -49,6 +64,14 @@ public class ReadFile {
 		return this.grafo;
 	}
 	
+	/**!
+	 * le a orientacao do grafo
+	 * 
+	 * @param line
+	 * 
+	 * @Pré-Condição: nenhuma
+	 * @Pós-Condição: orientação lida
+	 */
 	private boolean readGuidance(String line) {
 
 		line = line.substring(line.indexOf('=')+1);
@@ -60,6 +83,15 @@ public class ReadFile {
 		}
 	}
 	
+	/**!
+	 * le o numero de vertices 
+	 * 
+	 * @param line
+	 * @param v
+	 * 
+	 * @Pré-Condição: nenhuma
+	 * @Pós-Condição: vertices lidos
+	 */
 	private int readNumVer(String line, ArrayList<Vertice> v) {
 		String[] names;
 		String aux;
@@ -92,6 +124,14 @@ public class ReadFile {
 	
 	}
 
+	/**!
+	 * le as arestas do arquivo
+	 * 
+	 * @param line
+	 * 
+	 * @Pré-Condição: nenhuma
+	 * @Pós-Condição: arestas lidas
+	 */
 	private void readUV(String line) {
 		String lineAux;
 		String lineAux2;
