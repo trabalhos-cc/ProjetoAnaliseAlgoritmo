@@ -1,44 +1,48 @@
 package Main;
 
-import java.io.File;
+import java.util.Scanner;
 
+import Algoritmos.BuscaLargura;
+import Algoritmos.BuscaProfundidade;
+import Algoritmos.FordFulkerson;
+import Algoritmos.Kruskal;
+import Arquivos.ReadFile;
 import Grafos.Grafo;
-import View.GraphViz;
 
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		Grafo grafo = new Grafo();
-		GraphViz gv = new GraphViz();
-		 
-	   
-		gv.addln(gv.start_graph());
-	    gv.add("0 -- 1[label = a];");
-	    gv.add("2 -- 4[label = b];");
-	    gv.add("1 -- 3[label = c];");
-	    gv.add("4 -- 2[label = d];");
-	    gv.add("3 -- 2[label = e]");
-	    gv.addln(gv.end_graph());
-	    
-	    
-	   // String type = "gif";
-	    String type = "jpg";
-	    gv.increaseDpi();
-	    gv.decreaseDpi();
-	   // gv.decreaseDpi();
-	    File out = new File("DotGraph_"+"."+ type); 
-	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
-		
-		/*ReadFile file;
+//		GraphViz gv = new GraphViz();
+//		 
+//	   
+//		gv.addln(gv.start_graph());
+//	    gv.add("0 -- 1[label = a];");
+//	    gv.add("2 -- 4[label = b];");
+//	    gv.add("1 -- 3[label = c];");
+//	    gv.add("4 -- 2[label = d];");
+//	    gv.add("3 -- 2[label = e]");
+//	    gv.addln(gv.end_graph());
+//	    
+//	    
+//	   // String type = "gif";
+//	    String type = "jpg";
+//	    gv.increaseDpi();
+//	    gv.decreaseDpi();
+//	   // gv.decreaseDpi();
+//	    File out = new File("DotGraph_"+"."+ type); 
+//	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
+//		
+		ReadFile file = null;
 		int dados;
 		
 		/// se existe mais de um argumento
         if (args.length == 1) {
             /// inicializa autômato com arquivo de nome do segundo argumento
             System.out.println(String.format("FileName = %s", args[0]));
-           // file = new ReadFile(args[0]);
-           // grafo = file.read();
+//            file = new ReadFile("F:/Arquivos/eclipse-workspace/Trab_PAA_Gabriel/ProjetoAnaliseAlgoritmo/Algoritmos de Grafos/Trab_PAA_2/grafo1.txt");
+            grafo = file.read();
         } else {
             /// printa erro
             System.out.println("Nenhum arquivo de entrada especificado!");
@@ -84,7 +88,7 @@ public class Main {
 				break;
 			case 5:
 				break;
-			case 6:
+			case 6:	
 
 				if(grafo.isOrientado()) { 
 					FordFulkerson ford = new FordFulkerson (grafo);
@@ -98,7 +102,7 @@ public class Main {
 			}
 		}
 	    
-	    System.out.println("terminou");*/
+	    System.out.println("terminou");
 	}
 }
 	

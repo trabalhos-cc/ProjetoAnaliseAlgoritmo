@@ -44,10 +44,11 @@ public class Grafo implements Cloneable{
 		// quando não orientado as listas precisam dos valores inversos também
 		if (orientado == false) {
 			Aresta aresta = new Aresta(peso, rotulo, dest, src);
-			adjLists[dest].addFirst(aresta);
+			adjLists[dest].addFirst(aresta);			
 		}
 		Aresta aresta = new Aresta(peso, rotulo, src, dest);
 		adjLists[src].addFirst(aresta);
+	
 	}
 
 	/**!
