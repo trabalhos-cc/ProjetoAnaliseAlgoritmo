@@ -72,8 +72,10 @@ public class Grafo implements Cloneable{
 	 */
 	public void printGrafo() {
 		for (int i = 0; i < numVer; i++) {
-			System.out.println(numVer);
 			LinkedList<Aresta> list = adjLists[i];
+			
+			System.out.println("\n");
+						
 			for (int j = 0; j < list.size(); j++) {
 				System.out.println("vertice " + vertices.get(i).getRotulo() + " conectado a "
 						+ vertices.get(list.get(j).getDest()).getRotulo() + " com distancia " + list.get(j).getPeso());
@@ -125,7 +127,4 @@ public class Grafo implements Cloneable{
 		return false;
 	}
 
-	public String toString() {
-		return "num - " + this.numVer + " orientado - " + this.orientado;
-	}
 }

@@ -11,8 +11,8 @@ public class BellmanFord {
 	int peso[][];
 	Integer d[];
 
-	/**!
-	 * Contrutor da classe
+	/**
+	 * ! Contrutor da classe
 	 * 
 	 * @param grafo
 	 * 
@@ -25,7 +25,7 @@ public class BellmanFord {
 		this.peso = new int[this.numVer][this.numVer];
 		this.d = new Integer[this.numVer];
 
-		//copia os pesos do grafo
+		// copia os pesos do grafo
 		for (int u = 0; u < this.numVer; u++) {
 			LinkedList<Aresta> list = this.grafo.getAdjLists(u);
 			for (int v = 0; v < list.size(); v++) {
@@ -37,8 +37,8 @@ public class BellmanFord {
 		}
 	}
 
-	/**!
-	 * metodo de relaxamento
+	/**
+	 * ! metodo de relaxamento
 	 * 
 	 * @param u vértice u
 	 * @param v vértice v
@@ -48,24 +48,16 @@ public class BellmanFord {
 	 */
 	public void relax(int u, int v) {
 
-		System.out.println("peso= " + peso[u][v] + " d[u]"+ d[u]);
+		// verifica se existe um outro menor caminho passando por determinado vértice
+		if (this.d[u] != Integer.MAX_VALUE && this.d[v] > this.d[u] + this.peso[u][v]) {
 
-		//verifica se existe um outro menor caminho passando por determinado vértice
-		if(this.d[v] > this.d[u] + this.peso[u][v]) {
-
-			System.out.println("u e v = " + u + " " + v);
-			System.out.println(this.d[u] + " " + this.d[v]);
-
-			if(this.d[v] != this.d[u]) {
-				d[v] = this.d[u] + this.peso[u][v];
-				System.out.println("soma = " + (this.d[u] + this.peso[u][v]) + "\n");
-			}
+			d[v] = this.d[u] + this.peso[u][v];
 		}
 
 	}
 
-	/**!
-	 * Chama do algoritmo de bellmanFord, menor caminho
+	/**
+	 * ! Chama do algoritmo de bellmanFord, menor caminho
 	 * 
 	 * @param ver vértice original
 	 * 
@@ -75,16 +67,15 @@ public class BellmanFord {
 	public boolean bellmanFord(int ver) {
 		int aux[] = new int[this.numVer];
 
-		for(int v = 0; v < this.numVer; v++) {
+		for (int v = 0; v < this.numVer; v++) {
 			this.d[v] = Integer.MAX_VALUE;
 		}
 
-		this.d[ver] = 0; //distancia da origem dela mesma é zero
+		this.d[ver] = 0; // distancia da origem dela mesma é zero
 
-
-		for (int i = 0; i < this.numVer -1; i++) {
-			if(aux[i] == 0) {
-				for (int u = 0; u < this.numVer -1; u++) {
+		for (int i = 1; i < this.numVer; i++) {
+			if (aux[i] == 0) {
+				for (int u = 0; u < this.numVer; u++) {
 					LinkedList<Aresta> list = this.grafo.getAdjLists(u);
 					for (int v = 0; v < list.size(); v++) {
 						Aresta aresta = list.get(v);
@@ -95,24 +86,27 @@ public class BellmanFord {
 			}
 		}
 
-		//		for (int v = 0; v < numVer; v++) {
-		//			System.out.println("ate vertice " + v + "=" + d[v]);
-		//		}
-
-		for (int u = 0; u < this.numVer -1; u++) {
+		for (int u = 0; u < this.numVer; u++) {
 			LinkedList<Aresta> list = this.grafo.getAdjLists(u);
 			for (int v = 0; v < list.size(); v++) {
-				Aresta aresta = list.get(v); 
-				if(d[aresta.getDest()] > d[aresta.getSrc()] + peso[aresta.getSrc()][aresta.getDest()]) {
-					return false; //obedece a condição de relaxamento, retorna falso
-					//ciclo negativo, nao pode retornar os menores caminhos
+				Aresta aresta = list.get(v);
+				int src = aresta.getSrc();
+				int dst = aresta.getDest();
+				if (d[ver] != Integer.MAX_VALUE && d[dst] > d[src] + peso[src][dst]) {
+
+					System.out.println("Contem ciclo de peso negativo");
+
+					return false; // obedece a condição de relaxamento, retorna falso
+					// ciclo negativo, nao pode retornar os menores caminhos
 				}
 			}
 		}
 
-
 		for (int v = 0; v < numVer; v++) {
-			System.out.println(ver + " ate vertice " + v + "=" + d[v]);
+
+			System.out.println("Da vertice = " + this.grafo.getVertices().get(ver).getRotulo() + " para a vertice = "
+					+ this.grafo.getVertices().get(v).getRotulo() + " possui d = " + d[v] + "\n");
+
 		}
 
 		return true;
