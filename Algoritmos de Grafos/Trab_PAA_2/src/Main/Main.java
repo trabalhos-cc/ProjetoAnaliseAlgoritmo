@@ -2,56 +2,30 @@ package Main;
 
 import java.util.Scanner;
 
-import Algoritmos.*;
+import Algoritmos.BellmanFord;
+import Algoritmos.BuscaLargura;
+import Algoritmos.BuscaProfundidade;
+import Algoritmos.FordFulkerson;
+import Algoritmos.Kruskal;
+import Algoritmos.Prim;
 import Arquivos.ReadFile;
 import Grafos.Grafo;
+import View.GraphDrawer;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		Grafo grafo = new Grafo();
-//		GraphViz gv = new GraphViz();
-//		 
-//	   
-//		gv.addln(gv.start_graph());
-//	    gv.add("0 -- 1[label = a];");
-//	    gv.add("2 -- 4[label = b];");
-//	    gv.add("1 -- 3[label = c];");
-//	    gv.add("4 -- 2[label = d];");
-//	    gv.add("3 -- 2[label = e]");
-//	    gv.addln(gv.end_graph());
-//	    
-//	    
-//	   // String type = "gif";
-//	    String type = "jpg";
-//	    gv.increaseDpi();
-//	    gv.decreaseDpi();
-//	   // gv.decreaseDpi();
-//	    File out = new File("DotGraph_"+"."+ type); 
-//	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
-//		
+//		GraphDrawer gw = new GraphDrawer();
 		ReadFile file = null;
 		int dados;
 
-		/// se existe mais de um argumento
-//        if (args.length == 1) {
-		/// inicializa autômato com arquivo de nome do segundo argumento
-//			
-//			  System.out.println(String.format("FileName = %s", args[0]));
-
-		file = new ReadFile(
-				"F:/Arquivos/eclipse-workspace/Trab_PAA_Gabriel/ProjetoAnaliseAlgoritmo/Algoritmos de Grafos/Trab_PAA_2/grafo3.txt");
-
-//		file = new ReadFile("C:/Users/DK Square/Desktop/Trab_PAA_2/grafo3.txt");
-
+		
+		file = new ReadFile(args[0]);
 		grafo = file.read();
-//        } else {
-//            /// printa erro
-//            System.out.println("Nenhum arquivo de entrada especificado!");
-//           
-//            return;
-//        }
 
+
+//		gw.drawer(grafo, "Grafo");
 		if (grafo != null) {
 			System.out.println("--------------------------------");
 			System.out.println("       Escolha um algorítmo     \n");
@@ -85,7 +59,7 @@ public class Main {
 
 			case 3:
 
-				if (grafo.isOrientado()) {
+				if (!grafo.isOrientado()) {
 					System.out.println("Digite uma vertice origem = ");
 					dados = scan.nextInt();
 					BellmanFord bellman = new BellmanFord(grafo);
@@ -97,14 +71,11 @@ public class Main {
 
 			case 4:
 
-				if (!grafo.isOrientado()) {
 					System.out.println("Digite uma vertice inicial = ");
 					dados = scan.nextInt();
 					Kruskal kruskal = new Kruskal(grafo);
 					kruskal.arvGeradora(dados);
-				} else {
-					System.out.println("Grafo é orientado");
-				}
+
 				break;
 
 			case 5:
@@ -122,8 +93,16 @@ public class Main {
 			case 6:
 
 				if (grafo.isOrientado()) {
+					Scanner fonte = new Scanner(System.in);
+					System.out.print("Fonte: ");
+					int f = fonte.nextInt();
+					Scanner ralo = new Scanner(System.in);
+					System.out.print("Ralo: ");
+					int r = ralo.nextInt();
 					FordFulkerson ford = new FordFulkerson(grafo);
-					System.out.println("Fluxo máximo de: " + ford.fluxoMax(0, 5));
+					System.out.println("Fluxo máximo de: " + ford.fluxoMax(f, r));
+					fonte.close();
+					ralo.close();
 				} else {
 					System.out.println("Grafo não é orientado");
 				}

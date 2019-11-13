@@ -108,6 +108,7 @@ public class Grafo implements Cloneable{
 		return vertices;
 	}
 
+	
 	public void setVertices(ArrayList<Vertice> vertices) {
 		this.vertices = vertices;
 	}

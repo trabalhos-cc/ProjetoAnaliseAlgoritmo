@@ -47,11 +47,12 @@ public class BellmanFord {
 	 * @Pós-Condição: valores modificados
 	 */
 	public void relax(int u, int v) {
-
+		
 		// verifica se existe um outro menor caminho passando por determinado vértice
-		if (this.d[u] != Integer.MAX_VALUE && this.d[v] > this.d[u] + this.peso[u][v]) {
-
+		if (this.d[v] > this.d[u] + this.peso[u][v]) {
+			
 			d[v] = this.d[u] + this.peso[u][v];
+			
 		}
 
 	}
@@ -79,28 +80,30 @@ public class BellmanFord {
 					LinkedList<Aresta> list = this.grafo.getAdjLists(u);
 					for (int v = 0; v < list.size(); v++) {
 						Aresta aresta = list.get(v);
+						
 						relax(aresta.getSrc(), aresta.getDest());
+						
 					}
 					aux[u] = 1;
 				}
 			}
 		}
 
-		for (int u = 0; u < this.numVer; u++) {
-			LinkedList<Aresta> list = this.grafo.getAdjLists(u);
-			for (int v = 0; v < list.size(); v++) {
-				Aresta aresta = list.get(v);
-				int src = aresta.getSrc();
-				int dst = aresta.getDest();
-				if (d[ver] != Integer.MAX_VALUE && d[dst] > d[src] + peso[src][dst]) {
-
-					System.out.println("Contem ciclo de peso negativo");
-
-					return false; // obedece a condição de relaxamento, retorna falso
-					// ciclo negativo, nao pode retornar os menores caminhos
-				}
-			}
-		}
+//		for (int u = 0; u < this.numVer-1; u++) {
+//			LinkedList<Aresta> list = this.grafo.getAdjLists(u);
+//			for (int v = 0; v < list.size(); v++) {
+//				Aresta aresta = list.get(v);
+//				int src = aresta.getSrc();
+//				int dst = aresta.getDest();
+//				if (d[dst] < d[src] + peso[src][dst]) {
+//
+//					System.out.println("Contem ciclo de peso negativo");
+//
+//					return false; // obedece a condição de relaxamento, retorna falso
+//					// ciclo negativo, nao pode retornar os menores caminhos
+//				}
+//			}
+//		}
 
 		for (int v = 0; v < numVer; v++) {
 

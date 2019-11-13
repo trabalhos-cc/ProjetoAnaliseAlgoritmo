@@ -73,6 +73,8 @@ public class BuscaLargura {
 
 				int verAdj = this.grafo.getAdjLists(aux).get(i).getDest(); //o vertice adjacente
 
+				System.out.println("inicio = " + this.grafo.getAdjLists(aux).get(i).getSrc() + "fim = " + this.grafo.getAdjLists(aux).get(i).getDest() );
+				
 				if (cor[verAdj] == branco) { 
 					cor[verAdj] = cinza;				
 					this.d[verAdj] = this.d[aux] + 1; //timestamp
